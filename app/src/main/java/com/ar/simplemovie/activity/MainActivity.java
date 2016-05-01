@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.ar.simplemovie.R;
 import com.ar.simplemovie.app.adapter.MovieListAdapter;
@@ -52,21 +53,21 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//        list_movie.addOnScrollListener(new RecyclerView.OnScrollListener() {
-//            @Override
-//            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-//                visibleItemCount = linearLayoutManager.getChildCount();
-//                totalItemCount = linearLayoutManager.getItemCount();
-//                pastVisiblesItems = linearLayoutManager.findFirstVisibleItemPosition();
-//
-//                if (loading) {
-//                    if ((visibleItemCount + pastVisiblesItems) >= totalItemCount && totalItemCount >= LIMIT) {
-//                        searchMovie(true);
-//                    }
-//                }
-//
-//            }
-//        });
+        list_movie.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                visibleItemCount = linearLayoutManager.getChildCount();
+                totalItemCount = linearLayoutManager.getItemCount();
+                pastVisiblesItems = linearLayoutManager.findFirstVisibleItemPosition();
+
+                if (loading) {
+                    if ((visibleItemCount + pastVisiblesItems) >= totalItemCount && totalItemCount >= LIMIT) {
+                        searchMovie(true);
+                    }
+                }
+
+            }
+        });
 
     }
 
@@ -93,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
                             adapter.notifyDataSetChanged();
                         }
 
-                        //Toast.makeText(MainActivity.this, "" + adapter.getItemCount(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "" + adapter.getItemCount(), Toast.LENGTH_SHORT).show();
                     }
                 }
                 loading = true;
